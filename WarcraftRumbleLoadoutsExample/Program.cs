@@ -10,7 +10,7 @@ namespace WarcraftRumbleLoadoutExample
             // --------Import Loadout Example----------
 
             //Import the loadout from the loadout code
-            Loadout importedLoadout = Loadout.LoadoutFromCode("rumblo:CEMQABoECCYQAhoECBUQABoECF0QARoECAkQABoECB4QABoECFYQAQ==");
+            var importedLoadout = Loadout.LoadoutFromCode("rumblo:CEMaBAgmEAIaBAgVEAAaBAhdEAEaBAgJEAAaBAgeEAAaAghW");
             //Write the loadout as JSON to the console
             Console.WriteLine(JsonSerializer.Serialize(importedLoadout, new JsonSerializerOptions { WriteIndented = true }));
 
