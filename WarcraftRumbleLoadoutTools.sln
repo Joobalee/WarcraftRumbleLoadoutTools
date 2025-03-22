@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarcraftRumbleLoadoutTools", "WarcraftRumbleLoadoutTools\WarcraftRumbleLoadoutTools.csproj", "{7B22233D-8C62-47ED-A234-D6EAF1AB79CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarcraftRumbleLoadoutExample", "WarcraftRumbleLoadoutsExample\WarcraftRumbleLoadoutExample.csproj", "{E9DF7B3B-AF2C-421E-ACDA-9C4742E876C5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7B22233D-8C62-47ED-A234-D6EAF1AB79CC} = {7B22233D-8C62-47ED-A234-D6EAF1AB79CC}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B22233D-8C62-47ED-A234-D6EAF1AB79CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B22233D-8C62-47ED-A234-D6EAF1AB79CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B22233D-8C62-47ED-A234-D6EAF1AB79CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B22233D-8C62-47ED-A234-D6EAF1AB79CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9DF7B3B-AF2C-421E-ACDA-9C4742E876C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9DF7B3B-AF2C-421E-ACDA-9C4742E876C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9DF7B3B-AF2C-421E-ACDA-9C4742E876C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9DF7B3B-AF2C-421E-ACDA-9C4742E876C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E980E8AA-F9BC-422F-A4DA-7B451BF720CB}
+	EndGlobalSection
+EndGlobal
