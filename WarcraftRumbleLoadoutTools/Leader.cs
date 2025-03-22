@@ -19,6 +19,5 @@ namespace WarcraftRumbleLoadoutTools
             Mini = mini;
             Talent = talent;
         }
-
     }
 }
