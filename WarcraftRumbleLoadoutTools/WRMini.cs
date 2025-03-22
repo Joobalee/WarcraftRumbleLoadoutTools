@@ -572,7 +572,7 @@ namespace WarcraftRumbleLoadoutTools
         public WRMiniTalent? Talent
         {
             get => TalentByte != null ? (WRMiniTalent?)(((byte)Mini << 2) + TalentByte) : null;
-            set => TalentByte = (byte?)(value != null ? (byte?)value - ((byte)Mini << 2) : null);
+            set => TalentByte = (byte?)(value != null ? (int?)value - ((byte)Mini << 2) : null);
         }
     }
 }
