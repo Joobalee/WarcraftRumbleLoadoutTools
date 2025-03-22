@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime;
 using System.Text.RegularExpressions;
+using ProtoBuf;
+using System.IO;
+using System.Linq;
 
 namespace WarcraftRumbleLoadoutTools
 {
     [Serializable]
+    [ProtoContract]
     public class Loadout
     {
-        public Leader Leader { get; set; }
+        public Leader Leader { get; set; } = new Leader();
+        [ProtoMember(1)]
+        private int LeaderID { get => (int)Leader.Mini; set => Leader.Mini = Enum.Parse<WRMini>(value.ToString()); }
+        [ProtoMember(2)]
+        private int? LeaderTalentId { get => Leader.Talent != null ? (int?)Leader.Talent : null; set => Leader.TalentID = value; }
+        [ProtoMember(3)]
         public List<Troop> Troops { get; set; } = new List<Troop>();
+
+        public Loadout()
+        {
+                
+        }
         public Loadout(Leader l)
         {
             Leader = l;
@@ -23,127 +37,24 @@ namespace WarcraftRumbleLoadoutTools
         public static Loadout? LoadoutFromCode(string code)
         {
             Regex regex = new Regex("rumblo:");
-            Match match = regex.Match(code);
             code = regex.Replace(code, "");
 
             byte[] bytes = Convert.FromBase64String(code);
-            var protobuf = ProtobufTool.ProcessProtobufMessage(bytes);
-            List<Troop> troops = new List<Troop>();
-            Leader? leader = null;
-            for (int i = 0; i < protobuf.Count; i ++)
+            using (var stream = new MemoryStream(bytes))
             {
-                var v = protobuf[i];
-                if (i == 0)
-                {
-                    leader = new Leader(Enum.Parse<WRMini>(v.Value.ToString()));
-                    if (protobuf[i+1].Key == 2)
-                    {
-                        leader.TalentByte = protobuf[i + 1].Value;
-                        i++;
-                    }
-                }
-                else if (i > 0)
-                {
-                    var troop = new Troop(Enum.Parse<WRMini>(v.Value.ToString()));
-                    if (i != protobuf.Count - 1 && protobuf[i + 1].Key == 2)
-                    {
-                        troop.TalentByte = protobuf[i + 1].Value;
-                        i++;
-                    }
-                    troops.Add(troop);
-                }
-            }
-
-
-            //Old algorithm. Delete later
-            /*
-            byte readMiniByte = 8;
-            byte readTalentByte = 16;
-            //byte nextReadByte = 26;
-            byte talentTrueByte = 4;
-            byte talentFalseByte = 2;
-
-            for (int i = 0; i < bytes.Length-1; i++)
-            {
-                byte b = bytes[i];
-                if(i == 1)
-                {
-                    if (bytes[i+1] == readTalentByte)
-                    {
-                        leader = new Leader(Enum.Parse<WRMini>(b.ToString()), bytes[i+2]);
-                    }
-                    else
-                    {
-                        leader = new Leader(Enum.Parse<WRMini>(b.ToString()));
-                    }
-
-                }
-                if((b == talentTrueByte || b == talentFalseByte) && bytes[i+1] == readMiniByte)
-                {
-                    if(b == talentTrueByte)
-                    {
-                        troops.Add(new Troop(Enum.Parse<WRMini>(bytes[i + 2].ToString()), bytes[i+4]));
-                    }
-                    else if(b == talentFalseByte)
-                    {
-                        troops.Add(new Troop(Enum.Parse<WRMini>(bytes[i+2].ToString())));
-                    }
-
-                    
-                }
-
-            }
-            */
-            if (leader != null)
-            {
-                return new Loadout(leader, troops);
-            }
-            else
-            {
-                return null;
+                var result = Serializer.Deserialize<Loadout>(stream);
+                return result;
             }
         }
 
         public string GetCode()
         {
-            //TODO: replace with protobuf
-            byte readMiniByte = 8;
-            byte readTalentByte = 16;
-            byte nextReadByte = 26;
-            byte talentTrueByte = 4;
-            byte talentFalseByte = 2;
-            List<byte> bytes = new List<byte>();
-
-            bytes.Add(readMiniByte);
-            bytes.Add((byte)Leader.Mini);
-            if (Leader.TalentByte != null)
+            byte[] bytes = new byte[] { };
+            using (var stream = new MemoryStream())
             {
-                bytes.Add(readTalentByte);
-                bytes.Add((byte)Leader.TalentByte);
-                bytes.Add(nextReadByte);
+                Serializer.Serialize(stream,this);
+                bytes = stream.GetBuffer().Take((int)stream.Length).ToArray();
             }
-            for (int i = 0; i < Troops.Count; i++)
-            {
-                Troop t = Troops[i];
-                if (t.TalentByte != null)
-                {
-                    bytes.Add(talentTrueByte);
-                }
-                else
-                {
-                    bytes.Add(talentFalseByte);
-                }
-                bytes.Add(readMiniByte);
-                bytes.Add((byte)t.Mini);
-                if (t.TalentByte != null)
-                {
-                    bytes.Add(readTalentByte);
-                    bytes.Add((byte)t.TalentByte);
-                }
-                if (i != Troops.Count - 1)
-                    bytes.Add(nextReadByte);
-            }
-            string s = "rumblo:" + Convert.ToBase64String(bytes.ToArray());
             return "rumblo:" + Convert.ToBase64String(bytes.ToArray());
         }
     }

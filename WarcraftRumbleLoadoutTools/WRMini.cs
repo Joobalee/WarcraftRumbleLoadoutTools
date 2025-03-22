@@ -1,5 +1,6 @@
 ﻿
 
+using ProtoBuf;
 using System;
 using System.Text.Json.Serialization;
 
@@ -564,15 +565,18 @@ namespace WarcraftRumbleLoadoutTools
         //Arthas
 
     }
-
+    [ProtoContract]
     public abstract class MiniBase
     {
-        public byte? TalentByte { get; set; } = null;
-        public WRMini Mini { get; set; }
+        [ProtoMember(2)]
+        public abstract int? TalentID { get; set; }
+        [ProtoMember(1)]
+        public abstract WRMini Mini { get; set; }
+
         public WRMiniTalent? Talent
         {
-            get => TalentByte != null ? (WRMiniTalent?)(((byte)Mini << 2) + TalentByte) : null;
-            set => TalentByte = (byte?)(value != null ? (int?)value - ((byte)Mini << 2) : null);
+            get => TalentID != null ? (WRMiniTalent?)(((byte)Mini << 2) + TalentID) : null;
+            set => TalentID = (byte?)(value != null ? (int?)value - ((byte)Mini << 2) : null);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using ProtoBuf;
 using System.Text.Json;
 using WarcraftRumbleLoadoutTools;
 namespace WarcraftRumbleLoadoutExample
@@ -10,7 +11,7 @@ namespace WarcraftRumbleLoadoutExample
             // --------Import Loadout Example----------
 
             //Import the loadout from the loadout code
-            var importedLoadout = Loadout.LoadoutFromCode("rumblo:CEMaBAgmEAIaBAgVEAAaBAhdEAEaBAgJEAAaBAgeEAAaAghW");
+            var importedLoadout = Loadout.LoadoutFromCode("rumblo:CEMQABoECCYQAhoECBUQABoECF0QARoECAkQABoECB4QABoECFYQAQ==");
             //Write the loadout as JSON to the console
             Console.WriteLine(JsonSerializer.Serialize(importedLoadout, new JsonSerializerOptions { WriteIndented = true }));
 
