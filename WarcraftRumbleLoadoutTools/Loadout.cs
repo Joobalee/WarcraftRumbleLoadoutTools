@@ -20,7 +20,7 @@ namespace WarcraftRumbleLoadoutTools
             Leader = l;
             Troops = t;
         }
-        public static Loadout LoadoutFromCode(string code)
+        public static Loadout? LoadoutFromCode(string code)
         {
             Regex regex = new Regex("rumblo:");
             Match match = regex.Match(code);
@@ -66,7 +66,14 @@ namespace WarcraftRumbleLoadoutTools
                 }
 
             }
-            return new Loadout(leader,troops);
+            if(leader != null)
+            {
+                return new Loadout(leader, troops);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public string GetCode()
