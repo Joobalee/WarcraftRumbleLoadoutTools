@@ -1,7 +1,4 @@
-﻿
-
-using ProtoBuf;
-using System;
+﻿using ProtoBuf;
 using System.Text.Json.Serialization;
 
 namespace WarcraftRumbleLoadoutTools

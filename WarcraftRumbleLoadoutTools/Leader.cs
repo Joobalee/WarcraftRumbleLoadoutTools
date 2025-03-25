@@ -1,6 +1,4 @@
 ﻿using ProtoBuf;
-using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
 
 namespace WarcraftRumbleLoadoutTools
 {

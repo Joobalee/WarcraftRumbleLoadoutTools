@@ -1,6 +1,4 @@
-﻿
-using ProtoBuf;
-using System.Text.Json;
+﻿using System.Text.Json;
 using WarcraftRumbleLoadoutTools;
 namespace WarcraftRumbleLoadoutExample
 {
