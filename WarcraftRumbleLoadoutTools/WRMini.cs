@@ -57,7 +57,7 @@ namespace WarcraftRumbleLoadoutTools
         SAFEPilot = 0x2e,
         GoblinSappers = 0x2f,
         GryphonRider = 0x31,
-        //MountaineerDwarf = 0x32 // Invalid mini
+        //MountaineerDwarf = 0x32, // Invalid mini
         HarvestGolem = 0x33,
         HeadlessHorseman = 0x34,
         Hogger = 0x35,
@@ -98,8 +98,9 @@ namespace WarcraftRumbleLoadoutTools
         WitchDoctor = 0x59,
         Worgen = 0x5a,
         Ysera = 0x5b,
-        // MountaineerBear = 0x5c //Invalid Mini
-        Priestess = 0x5d
+        //MountaineerBear = 0x5c, //Invalid Mini
+        Priestess = 0x5d,
+        Arthas = 0x5e
     }
 
     //idk of a better way to do this ¯\_(ツ)_/¯
@@ -559,9 +560,12 @@ namespace WarcraftRumbleLoadoutTools
         //Priestess
         PowerWordShield = (WRMini.Priestess << 2),
         EmpoweredRenew = (WRMini.Priestess << 2) + 1,
-        SpiritOfRedemption = (WRMini.Priestess << 2) + 2
+        SpiritOfRedemption = (WRMini.Priestess << 2) + 2,
 
         //Arthas
+        DeathGrip = (WRMini.Arthas << 2),
+        NecroticPlague = (WRMini.Arthas << 2) + 1,
+        Purgatory = (WRMini.Arthas << 2) + 2
 
     }
     [ProtoContract]

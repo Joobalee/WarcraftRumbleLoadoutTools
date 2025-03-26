@@ -17,7 +17,7 @@ namespace WarcraftRumbleLoadoutExample
             Console.WriteLine(""); //spacing
 
             //Create a new loadout with Sylvanas
-            var createdLoadout = new Loadout(new Leader(WRMini.Sylvanas, 2));
+            var createdLoadout = new Loadout(new Leader(WRMini.Arthas, 2));
             //Update the troops of the loadout
             createdLoadout.Troops = new List<Troop>
             {
