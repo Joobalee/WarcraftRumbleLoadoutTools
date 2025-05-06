@@ -3,11 +3,29 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/Joobalee/WarcraftRumbleLoadoutTools</RepositoryUrl>
+    <Authors>Joobalee</Authors>
+    <Copyright>Joobalee 2025</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="protobuf-net" Version="3.2.46" />
     <PackageReference Include="System.Text.Json" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="license.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
