@@ -100,7 +100,8 @@ namespace WarcraftRumbleLoadoutTools
         Ysera = 0x5b,
         //MountaineerBear = 0x5c, //Invalid Mini
         Priestess = 0x5d,
-        Arthas = 0x5e
+        Arthas = 0x5e,
+        Thrall = 0x5f
     }
 
     //idk of a better way to do this ¯\_(ツ)_/¯
@@ -565,7 +566,12 @@ namespace WarcraftRumbleLoadoutTools
         //Arthas
         DeathGrip = (WRMini.Arthas << 2),
         NecroticPlague = (WRMini.Arthas << 2) + 1,
-        Purgatory = (WRMini.Arthas << 2) + 2
+        Purgatory = (WRMini.Arthas << 2) + 2,
+
+        //Thrall
+        TotemicMastery = (WRMini.Thrall << 2),
+        FeralSpirit = (WRMini.Thrall << 2) + 1,
+        CallOfTheHorde = (WRMini.Thrall << 2) + 2,
 
     }
     [ProtoContract]
@@ -578,8 +584,8 @@ namespace WarcraftRumbleLoadoutTools
 
         public WRMiniTalent? Talent
         {
-            get => TalentID != null ? (WRMiniTalent?)(((byte)Mini << 2) + TalentID) : null;
-            set => TalentID = (byte?)(value != null ? (int?)value - ((byte)Mini << 2) : null);
+            get => TalentID != null ? (WRMiniTalent?)(((int)Mini << 2) + TalentID) : null;
+            set => TalentID = (int?)(value != null ? (int?)value - ((int)Mini << 2) : null);
         }
     }
 }

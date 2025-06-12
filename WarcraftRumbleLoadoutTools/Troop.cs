@@ -9,7 +9,6 @@ namespace WarcraftRumbleLoadoutTools
         public override WRMini Mini { get; set; }
         [ProtoMember(2)]
         public override int? TalentID { get; set; }
-
         public Troop()
         {
                 
@@ -18,7 +17,7 @@ namespace WarcraftRumbleLoadoutTools
         {
             Mini = mini;
         }
-        public Troop(WRMini mini, byte talent)
+        public Troop(WRMini mini, int talent)
         {
             Mini = mini;
             TalentID = talent;

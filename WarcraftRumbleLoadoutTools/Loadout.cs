@@ -15,7 +15,7 @@ namespace WarcraftRumbleLoadoutTools
         [ProtoMember(1)]
         private int LeaderID { get => (int)Leader.Mini; set => Leader.Mini = Enum.Parse<WRMini>(value.ToString()); }
         [ProtoMember(2)]
-        private int? LeaderTalentId { get => Leader.Talent != null ? (int?)Leader.Talent : null; set => Leader.TalentID = value; }
+        private int? LeaderTalentID { get => Leader.TalentID; set => Leader.TalentID = value; }
         [ProtoMember(3)]
         public List<Troop> Troops { get; set; } = new List<Troop>();
 
@@ -32,6 +32,11 @@ namespace WarcraftRumbleLoadoutTools
             Leader = l;
             Troops = t;
         }
+        /// <summary>
+        /// Create an object representation of a rumble deck from an existing code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public static Loadout? LoadoutFromCode(string code)
         {
             Regex regex = new Regex("rumblo:");
@@ -44,7 +49,10 @@ namespace WarcraftRumbleLoadoutTools
                 return result;
             }
         }
-
+        /// <summary>
+        /// Retrieve the formatted rumble deck code from the object representation of the loadout
+        /// </summary>
+        /// <returns></returns>
         public string GetCode()
         {
             byte[] bytes = new byte[] { };

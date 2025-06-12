@@ -5,11 +5,14 @@ namespace WarcraftRumbleLoadoutTools
     [ProtoContract]
     public class Leader : MiniBase
     {
-        [ProtoMember(2)]
-        public override int? TalentID { get; set; }
         [ProtoMember(1)]
         public override WRMini Mini { get; set; }
+        [ProtoMember(2)]
+        public override int? TalentID { get; set; }
+        public Leader()
+        {
 
+        }
         public Leader(WRMini mini)
         {
             Mini = mini;
@@ -24,9 +27,6 @@ namespace WarcraftRumbleLoadoutTools
             Mini = mini;
             Talent = talent;
         }
-        public Leader()
-        {
-                
-        }
+
     }
 }

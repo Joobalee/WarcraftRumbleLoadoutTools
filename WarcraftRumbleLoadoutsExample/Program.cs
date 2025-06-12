@@ -8,7 +8,7 @@ namespace WarcraftRumbleLoadoutExample
         {
             // --------Import Loadout Example----------
 
-            //Import the loadout from the loadout code
+            //Import the loadout from the loadout code. This is an Onu deck featuring Faerie dragon, bog beast, priestess, execute, batlings and grunts
             var importedLoadout = Loadout.LoadoutFromCode("rumblo:CEMQABoECCYQAhoECBUQABoECF0QARoECAkQABoECB4QABoECFYQAQ==");
             //Write the loadout as JSON to the console
             Console.WriteLine(JsonSerializer.Serialize(importedLoadout, new JsonSerializerOptions { WriteIndented = true }));
@@ -16,8 +16,8 @@ namespace WarcraftRumbleLoadoutExample
             //--------Export Loadout Example----------
             Console.WriteLine(""); //spacing
 
-            //Create a new loadout with Sylvanas
-            var createdLoadout = new Loadout(new Leader(WRMini.Arthas, 2));
+            //Create a new loadout with Thrall
+            var createdLoadout = new Loadout(new Leader(WRMini.Thrall, WRMiniTalent.CallOfTheHorde));
             //Update the troops of the loadout
             createdLoadout.Troops = new List<Troop>
             {
@@ -28,7 +28,7 @@ namespace WarcraftRumbleLoadoutExample
                 //Talents can use either WRMiniTalent enum, or a value from 0-2 to set the talent
                 new Troop(WRMini.DeepBreath,1),
                 new Troop (WRMini.ChainLightning,2),
-                new Troop(WRMini.Necromancer,(byte)0) //0 is ambiguous between enums, ints, doubles etc so it needs to be casted as a byte in this case
+                new Troop(WRMini.Necromancer,0)
             };
             Console.WriteLine(""); //spacing
 
